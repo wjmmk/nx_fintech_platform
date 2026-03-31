@@ -1,2 +1,31 @@
-<app-nx-welcome></app-nx-welcome>
-<router-outlet></router-outlet>
+<div class="ocr-container">
+  <h1>Fintech OCR Scan</h1>
+  <p>Sube una factura para procesarla.</p>
+
+  <div class="upload-section">
+    <input type="file" (change)="onFileSelected($event)" accept="image/*" />
+    <button (click)="onUpload()" [disabled]="!selectedFile || loading">
+      {{ loading ? 'Escaneando...' : 'Escanear Factura' }}
+    </button>
+  </div>
+
+  @if (scanResult) {
+    <div class="results-section">
+      <h2>Resultados</h2>
+      <div class="result-card">
+        <p><strong>Total:</strong> {{ scanResult.total }}</p>
+        <p><strong>NIT:</strong> {{ scanResult.nit }}</p>
+        <div class="raw-text">
+          <h3>Texto Extraído:</h3>
+          <pre>{{ scanResult.raw_text }}</pre>
+        </div>
+      </div>
+    </div>
+  }
+
+  @if (error) {
+    <div class="error-message">
+      {{ error }}
+    </div>
+  }
+</div>
