@@ -87,6 +87,9 @@
       "options": {
         "targetName": "test"
       }
+    },
+    {
+      "plugin": "@nxlv/python"
     }
   ]
 }
